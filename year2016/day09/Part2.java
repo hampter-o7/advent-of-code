@@ -9,26 +9,15 @@ import java.util.regex.Pattern;
 public class Part2 {
 
     public Part2() throws FileNotFoundException {
-        File inputPath = new File(System.getProperty("user.dir"), "test2.txt");
+        long start = System.nanoTime();
+        File inputPath = new File(System.getProperty("user.dir"), "input.txt");
         Scanner myReader = new Scanner(inputPath);
-        System.out.println(decompressFile2(myReader.nextLine()));
+        System.out.println(decompressFile(myReader.nextLine()));
         myReader.close();
-    }
+        long end = System.nanoTime();
+        long duration = end - start;
 
-    private static long decompressFile2(String string) {
-        StringBuilder stringBuilder = new StringBuilder(string);
-        Pattern pattern = Pattern.compile("\\([0-9]+x[0-9]+\\)");
-        Matcher matcher = pattern.matcher(stringBuilder);
-        while (matcher.find()) {
-            String[] compressionString = stringBuilder.substring(matcher.start() + 1, matcher.end() - 1).split("x");
-            int range = Integer.parseInt(compressionString[0]);
-            int repeats = Integer.parseInt(compressionString[1]);
-            matcher.appendReplacement(stringBuilder,
-                    stringBuilder.substring(matcher.end(), matcher.end() + range).repeat(repeats - 1));
-            stringBuilder.replace(matcher.start(), matcher.end(), "");
-            matcher = pattern.matcher(stringBuilder);
-        }
-        return stringBuilder.length();
+        System.out.println("Execution time: " + (duration / 1_000_000) + " ms");
     }
 
     private static long decompressFile(String string) {
@@ -37,9 +26,9 @@ public class Part2 {
         Pattern pattern = Pattern.compile("\\([0-9]+x[0-9]+\\)");
         Matcher matcher = pattern.matcher(stringBuilder);
         while (matcher.find()) {
-            String[] compressionString = stringBuilder.substring(matcher.start() + 1, matcher.end() - 1).split("x");
-            int range = Integer.parseInt(compressionString[0]);
-            int repeats = Integer.parseInt(compressionString[1]);
+            String[] compressionMarker = stringBuilder.substring(matcher.start() + 1, matcher.end() - 1).split("x");
+            int range = Integer.parseInt(compressionMarker[0]);
+            int repeats = Integer.parseInt(compressionMarker[1]);
             stringBuilder.replace(matcher.start(), matcher.end(),
                     stringBuilder.substring(matcher.end(), matcher.end() + range).repeat(repeats - 1));
             if (matcher.start() > 0) {

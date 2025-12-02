@@ -20,9 +20,9 @@ public class Part1 {
         Pattern pattern = Pattern.compile("\\([0-9]+x[0-9]+\\)");
         Matcher matcher = pattern.matcher(stringBuilder);
         while (matcher.find()) {
-            String[] compressionString = stringBuilder.substring(matcher.start() + 1, matcher.end() - 1).split("x");
-            int range = Integer.parseInt(compressionString[0]);
-            int repeats = Integer.parseInt(compressionString[1]);
+            String[] compressionMarker = stringBuilder.substring(matcher.start() + 1, matcher.end() - 1).split("x");
+            int range = Integer.parseInt(compressionMarker[0]);
+            int repeats = Integer.parseInt(compressionMarker[1]);
             stringBuilder.replace(matcher.start(), matcher.end(),
                     stringBuilder.substring(matcher.end(), matcher.end() + range).repeat(repeats - 1));
             matcher = pattern.matcher(stringBuilder).region(
