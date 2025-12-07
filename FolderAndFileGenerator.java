@@ -38,7 +38,7 @@ public class FolderAndFileGenerator {
                 Files.write(Paths.get("year" + year + "/day" + dayDefault + "/Part" + j + ".java"),
                         fileContent.getBytes(StandardCharsets.UTF_8));
             }
-            String input = fetchInput(day, year);
+            String input = fetchInput(dayDefault, year);
             Files.write(Paths.get("year" + year + "/day" + dayDefault + "/input.txt"),
                     input.getBytes(StandardCharsets.UTF_8));
         }
