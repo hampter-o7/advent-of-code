@@ -14,8 +14,8 @@ import java.util.Scanner;
 
 public class FolderAndFileGenerator {
     public static void main(String[] args) throws IOException, URISyntaxException {
-        String year = ""; // Change year
-        String day = ""; // Change day or leave blank for whole year
+        String year = "2025"; // Change year
+        String day = "8"; // Change day or leave blank for whole year
         File yearDir = new File("year" + year);
         yearDir.mkdir();
         Path templatePath = Paths.get("fileTemplate");
