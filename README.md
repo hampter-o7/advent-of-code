@@ -52,8 +52,6 @@ java Main [year number] [day] [part]
     - ...
 
 ## Contributing
-Dimnik(dominikpin).
 
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/license/mit/).
+Created by **Dimnik (dominikpin)**.  
+Contributions, bug reports, and improvements are welcome!
